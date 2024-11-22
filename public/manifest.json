@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "School Finder",
+  "name": "Find Schools Around A Property.",
   "icons": [
     {
       "src": "favicon.ico",
