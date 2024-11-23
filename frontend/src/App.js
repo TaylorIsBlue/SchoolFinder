@@ -1,6 +1,7 @@
 import "./App.css";
 import "antd/dist/reset.css";
 import "leaflet/dist/leaflet.css";
+import "./Mobile.css";
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import L from "leaflet";
@@ -56,30 +57,37 @@ function MapCenter({ center }) {
 
 function SchoolCard({ school, schoolRefs, index, isSelected, onClick }) {
   return (
-    <List.Item ref={(el) => (schoolRefs.current[index] = el)} style={{ paddingTop: "30px", paddingBottom: "30px"}} >
-      <Card onClick={onClick} hoverable={true}>
-        <Title level={5}>{school.tags.name || "Unnamed School"}</Title>
-        <Text>Distance: {school.distance.toFixed(2)} km</Text>
-        <br />
+    <List.Item ref={(el) => (schoolRefs.current[index] = el)}>
+      <Card
+        onClick={onClick}
+        hoverable
+        style={{
+          margin: "10px 0",
+          border: isSelected == true ? "1px solid #1890ff" : "",
+          borderRadius: "8px",
+        }}
+        styles={{Body: { paddingBottom: "10px" } }}>
         
-        <Button
+        <div style={{ marginBottom: "10px" }}>
+          <Title level={5}>{school.tags.name || "Unnamed School"}</Title>
+          <Text>Distance: {school.distance.toFixed(2)} km</Text>
+
+          <br />
+          
+          <Button
           type="link"
           href={`https://www.google.com/maps?q=${school.lat},${school.lon}`}
           target="_blank"
-          style={{ padding: 0 }}
+          style={{ padding: 0, paddingTop: 2 }}
         >
           Open in Google Maps
         </Button>
         <br />
-        <Tag color="blue">{school.type}</Tag>
-        {/* <Button
-          type="link"
-          href={school.reviews || "#"} // Replace '#' with actual review link if available
-          target="_blank"
-          style={{ padding: 0 }}
-        >
-          View Reviews
-        </Button> */}
+        <div style={{ marginTop: "5px" }}>
+          <Tag color="blue">{school.type}</Tag>
+        </div>
+        
+        </div>
       </Card>
     </List.Item>
   );
@@ -230,13 +238,13 @@ function App() {
             <Col xs={24} md={16}>
               <Card
                 styles={{ body: { padding: 0, height: "100%" } }}
-                style={{ height: "100%" }}
-              >
+                style={{ height: "300px" }} // Adjust for mobile
+                >
                 <MapContainer
                   center={center}
                   zoom={13}
-                  style={{ height: "100%", width: "100%" }}
-                >
+                  style={{ height: "300px", width: "100%" }} // Ensure responsiveness
+                  >
                   <MapCenter center={center} />
                   <TileLayer
                   url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"

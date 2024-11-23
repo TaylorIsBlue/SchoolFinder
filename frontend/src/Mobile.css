@@ -1,0 +1,28 @@
+@media (max-width: 768px) {
+    .leaflet-container {
+      height: 300px !important; 
+    }
+  
+    .ant-card {
+      margin-bottom: 16px; 
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .leaflet-container {
+      height: 500px !important; 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .ant-card-actions {
+      flex-direction: column !important; /* Stack buttons vertically */
+      align-items: stretch;
+    }
+  
+    .ant-card-actions > li {
+      margin-bottom: 8px;
+      width: 100%; /* Make buttons full width */
+    }
+  }
+  
